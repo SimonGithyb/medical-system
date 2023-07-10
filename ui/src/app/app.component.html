@@ -1,0 +1,9 @@
+<div *ngIf="role == undefined; else session">
+    <app-nav></app-nav>
+</div>
+
+<ng-template #session>
+    <app-roles-nav></app-roles-nav>
+</ng-template>
+
+<router-outlet></router-outlet>

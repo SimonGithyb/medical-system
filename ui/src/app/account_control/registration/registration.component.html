@@ -1,0 +1,61 @@
+<div class="body">
+    <div class="get-started">
+      <p>Registration</p>
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" >
+          <mat-label>E-mail</mat-label>
+          <input matInput  placeholder="E-mail" type="email" formControlName="login" >
+        </mat-form-field>
+        <mat-error *ngIf="emailError != ''">{{emailError}}</mat-error>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" type="text" formControlName="name">
+        </mat-form-field>
+        <mat-error *ngIf="nameError != ''">{{nameError}}</mat-error>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Surname</mat-label>
+            <input matInput placeholder="Surname" type="text" formControlName="surename">
+        </mat-form-field>
+        <mat-error *ngIf="surenameError != ''">{{surenameError}}</mat-error>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Personal Id</mat-label>
+            <input matInput placeholder="PersonalId" type="text" formControlName="personalId">
+        </mat-form-field>
+        <mat-error *ngIf="personalIdError != ''">{{personalIdError}}</mat-error>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="Country" type="text" formControlName="country">
+        </mat-form-field>
+        <mat-error *ngIf="countryError != ''">{{countryError}}</mat-error>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Zip code</mat-label>
+            <input matInput placeholder="Zip code" type="text" formControlName="zipCode">
+        </mat-form-field>
+        <mat-error *ngIf="zipCodeError != ''">{{zipCodeError}}</mat-error>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Address" type="text" formControlName="address">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input matInput placeholder="Phone number" type="text" formControlName="phoneNumber">
+        </mat-form-field>
+        <mat-error *ngIf="phoneNumberError != ''">{{phoneNumberError}}</mat-error>
+
+        <input type="submit" value="Registration" class="login-btn">
+      </form>
+    </div>
+</div>
+  

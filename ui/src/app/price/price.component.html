@@ -1,0 +1,24 @@
+<main>
+    <table>
+        <thead *ngFor="let head of headers">
+            <td></td>
+        </thead>
+        <tr *ngFor="let price of priceList">
+            <td>
+                {{price.name}}
+            </td>
+            <td>
+                {{price.cost}}
+            </td>
+            <td>
+                {{price.material}}
+            </td>
+            <td>
+                {{price.indications}}
+            </td>
+            <td>
+                {{price.testTime}}
+            </td>
+        </tr>
+    </table>
+</main>
