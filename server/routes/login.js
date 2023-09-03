@@ -6,6 +6,107 @@ const redisSvc = require('../svc/redis-svc');
 const userModel = require('../models/user.model');
 const { SESSION_TIME_IN_M } = process.env;
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Login:
+ *       type: object
+ *       required:
+ *         - login
+ *         - password
+ *       properties:
+ *         login:
+ *           type: string
+ *           description: Login(username) for login to system 
+ *         password:
+ *           type: string
+ *           description: Password for access to account
+ *     Registration:
+ *       type: object
+ *       required:
+ *         - login
+ *         - password
+ *         - name
+ *         - surname
+ *         - personalId
+ *         - country
+ *         - zipcode
+ *         - address
+ *         - phoneNumber
+ *       properties:
+ *         login:
+ *           type: string
+ *           description: Login(username) for login to system 
+ *         password:
+ *           type: string
+ *           description: Password for access to account
+ *         name:
+ *           type: string
+ *           description: Name persone who try to regist to system
+ *         surname:
+ *           type: string
+ *           description: Surname persone who try to regist to system
+ *         personalId:
+ *           type: number
+ *           description: Id persone whole try to regist to system
+ *         country:
+ *           type: string
+ *           description: Country from this person is derived
+ *         zipcode:
+ *           type: number
+ *           description: Zipcode where this persone life
+ *         address:
+ *           type: string
+ *           description: Address where this persone life
+ *         phoneNumber:
+ *           type: number
+ *           description: contact number for that person
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Login
+ *   description: The animals managing API
+ * /login:
+ *   post:
+ *     summary: Try login to system
+ *     tags: [Login]
+ *     responses:
+ *       200:
+ *         description: Login to system
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *      400:
+ *          description: Data don't found
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: string
+ *   put:
+ *    summary: Registration new patient to the system
+ *    tags: [Registration]
+ *        schema:
+ *          type: string
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *    responses:
+ *      200:
+ *        description: New patient is registred
+ *        content:
+ *          application/json:
+ *      400:
+ *        description: Don't have all required data
+ *      500:
+ *        description: Some error happened
+ */
+
+
 router.post('/',
 async (req, res) => {
     const { login, password } = req.body;
@@ -33,7 +134,7 @@ async (req, res) => {
     }
 });
 
-router.post('/registration',
+router.put('/',
 async (req, res) => {
     const { login, password, name, surename, personalId, country, zipCode, address, phoneNumber } = req.body;
     console.log(req.body);

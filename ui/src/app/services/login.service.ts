@@ -26,7 +26,7 @@ export class LoginService {
   registration(credentials: any) {
     const headers = this.superServ.getHeader();
     return this.superServ.getConfig()
-      .pipe(mergeMap(config => this.http.post(config["serverUrl"] + 'login/registration', credentials, { headers })),
+      .pipe(mergeMap(config => this.http.put(config["serverUrl"] + 'login/', credentials, { headers })),
         catchError((err) => {
           console.error(err);
           return this.handleError(err);

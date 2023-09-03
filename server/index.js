@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const swaggerjsdoc = require('swagger-jsdoc');
+const swaggerui = require('swagger-ui-express');
 
 const routes = require('./routes/schema-routes');
 const { log: wrapLog } = require("./utils/loging");
@@ -25,6 +27,30 @@ const main = async () => {
   app.use(cors());
 
   routes(app);
+
+  const options = {
+    definition: {
+      openapi: '3.0.0',
+      info: {
+        title:"CRUD app docs",
+        version: "0.1",
+      },
+      servers: [
+        {
+          url: process.env.SERVER_URL
+        }
+      ]
+    },
+    apis: ["./routes/*.js"]
+  };
+  
+  const spacs = swaggerjsdoc(options);
+  app.use(
+    "/api-docs",
+    swaggerui.serve,
+    swaggerui.setup(spacs)
+  );
+  
 
   server.listen(SERVER_PORT, async () => {
     console.log(`Server started on port ${SERVER_PORT}`);

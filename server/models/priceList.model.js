@@ -10,6 +10,6 @@ priceListSchema = new Schema({
     testTime: { type: Number},
 }, {collection: 'priceList'});
 
-PriceList = mongoose.model('PriceList', priceList);
+PriceList = mongoose.model('PriceList', priceListSchema);
 
 module.exports = PriceList;
