@@ -67,12 +67,12 @@ const { SESSION_TIME_IN_M } = process.env;
 /**
  * @swagger
  * tags:
- *   name: Login
- *   description: The animals managing API
+ *   name: Access control
+ *   description: all endpoint for access control
  * /login:
  *   post:
  *     summary: Try login to system
- *     tags: [Login]
+ *     tags: [Access control]
  *     responses:
  *       200:
  *         description: Login to system
@@ -80,7 +80,7 @@ const { SESSION_TIME_IN_M } = process.env;
  *           application/json:
  *             schema:
  *               type: string
- *      400:
+ *       400:
  *          description: Data don't found
  *          content:
  *              application/json:
@@ -88,8 +88,8 @@ const { SESSION_TIME_IN_M } = process.env;
  *                      type: string
  *   put:
  *    summary: Registration new patient to the system
- *    tags: [Registration]
- *        schema:
+ *    tags: [Access control]
+ *    schema:
  *          type: string
  *    requestBody:
  *      required: true
