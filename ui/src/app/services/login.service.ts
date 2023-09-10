@@ -36,7 +36,7 @@ export class LoginService {
   logout() {
     const headers = this.superServ.getHeaderWithToken();
     return this.superServ.getConfig()
-      .pipe(mergeMap(config => this.http.get(config["serverUrl"] + 'login/logout/', { headers })),
+      .pipe(mergeMap(config => this.http.get(config["serverUrl"] + 'login/', { headers })),
         map(result => {
           this.superServ.resetStorage();
           return result;

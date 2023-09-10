@@ -26,11 +26,21 @@ export class RegistrationComponent {
   private zipCodeValidator = new RegExp('[0-9]{5}');
   private phoneNumberValidator = new RegExp('[0-9]{9}');
   private personalIdValidator = new RegExp('[0-9]{11}');
+  private latestPage: any;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private loginService: LoginService
               ) { }
+
+  ngOnInit(): void {
+    this.latestPage = this.currentPage;
+    sessionStorage.setItem('currentPage', '/registration');
+  }
+
+  get currentPage() {
+    return sessionStorage.getItem('currentPage');
+  }
 
   public registrationForm: FormGroup = this.formBuilder.group({
     login: ['', Validators.required],
@@ -122,5 +132,9 @@ export class RegistrationComponent {
     }
 
     return goodData;
+  }
+
+  public back() {
+    this.router.navigate([this.latestPage || '/']);
   }
 }

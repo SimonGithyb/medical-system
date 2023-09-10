@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PriceService } from '../services/price.service';
 
@@ -7,12 +7,16 @@ import { PriceService } from '../services/price.service';
   templateUrl: './price.component.html',
   styleUrls: ['./price.component.scss']
 })
-export class PriceComponent {
+export class PriceComponent implements OnInit{
 
   public priceList: any;
   public headers = ['Name', 'Cost', 'Material', 'Indications', 'Time'];
 
-  constructor(private priceSvc: PriceService) {}
+  constructor(private priceSvc: PriceService) { }
+
+  ngOnInit(): void {
+    sessionStorage.setItem('currentPage', '/price');
+  }
 
   loadPriceList(): void {
     this.priceSvc.getPriceList()

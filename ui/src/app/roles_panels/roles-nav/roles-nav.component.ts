@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-roles-nav',
@@ -7,33 +9,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RolesNavComponent implements OnInit {
   private adminHeders = ['Add new employee', 'Add new price list'];
-  private doctorHeders = ['Patient', 'My graphic'];
-  private nurseHeders = ['Patient', 'My graphic'];
+  private medHeders = ['Patient', 'My graphic', 'Add new patient', 'Recipe', 'Referral'];
   private patientHeders = ['My visits', 'Plan visit'];
 
-  public heaadersForShow: any;
+  public headersForShow: any;
+
+  constructor ( private loginService: LoginService,
+                private toast: ToastService,
+              ) {}
 
   ngOnInit(): void {
     switch (this.role) {
       case 'admin':
-        this.heaadersForShow = this.adminHeders;
+        this.headersForShow = this.adminHeders;
         break;
 
         case 'doctor':
-        this.heaadersForShow = this.doctorHeders;
+        this.headersForShow = this.medHeders;
         break;
 
         case 'nurse':
-        this.heaadersForShow = this.nurseHeders;
+        this.headersForShow = this.medHeders;
         break;
 
       case 'patient':
-        this.heaadersForShow = this.patientHeders;
+        this.headersForShow = this.patientHeders;
         break;
     }
   }
 
   get role() {
     return sessionStorage.getItem('role');
+  }
+
+  public logout() {
+    this.loginService.logout()
+    .subscribe(res => this.toast.openSnackBar('Logout with successful', 'INFO'),
+               error => this.toast.openSnackBar('Logout failed','INFO'))
   }
 }

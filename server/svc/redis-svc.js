@@ -34,12 +34,20 @@ const redisService = class {
         await this.redisSet(this.getAccessTokenKey(data.username), JSON.stringify(data.accessToken), 'EX', this.sessionTTL);
     }
 
-    getAccessToken(username) {
+    getAccessTokenByUsername(username) {
         return this.redisGet(this.getInviteSessionKey(username));
     }
 
-    dropAccessToken(username) {
+    async getAccessToken(token) {
+        return this.redisGet(token);
+    }
+
+    dropAccessTokenByUsername(username) {
         return this.redisDel(this.getInviteSessionKey(username));
+    }
+
+    dropAccessToken(token) {
+        return this.redisDel(token);
     }
 }
 

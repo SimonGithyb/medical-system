@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,7 +14,6 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './account_control/login/login.component';
 import { AdminComponent } from './roles_panels/admin/admin.component';
 import { DoctorComponent } from './roles_panels/doctor/doctor.component';
-import { NurseComponent } from './roles_panels/nurse/nurse.component';
 import { PatientComponent } from './roles_panels/patient/patient.component';
 import { RegistrationComponent } from './account_control/registration/registration.component';
 import { RolesNavComponent } from './roles_panels/roles-nav/roles-nav.component';
@@ -28,7 +28,6 @@ import { ContactComponent } from './contact/contact.component';
     LoginComponent,
     AdminComponent,
     DoctorComponent,
-    NurseComponent,
     PatientComponent,
     RegistrationComponent,
     RolesNavComponent,
@@ -46,6 +45,7 @@ import { ContactComponent } from './contact/contact.component';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

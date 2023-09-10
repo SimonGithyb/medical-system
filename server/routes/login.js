@@ -86,6 +86,22 @@ const { SESSION_TIME_IN_M } = process.env;
  *              application/json:
  *                  schema:
  *                      type: string
+ *   get:
+ *     summary: Try logout from system
+ *     tags: [Access control]
+ *     responses:
+ *       200:
+ *         description: Logout from system
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *       400:
+ *          description: Can't found access token
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: string
  *   put:
  *    summary: Registration new patient to the system
  *    tags: [Access control]
@@ -117,21 +133,37 @@ async (req, res) => {
 
     const user = await userModel.find({login: login, password: password});
 
-    if(user) {
+    if(user.length > 0) {
         const accessToken = v4();
         redisSvc.setAccessToken({
             username: login,
             accessToken
         });
 
-        res.status(200).send({
+        
+        console.log(`Create login session with access token: ${accessToken}`);
+        return res.status(200).send({
             username: login,
             accessToken: accessToken,
             role: user[0].role,
             time: SESSION_TIME_IN_M * 60
         });
-        console.log(`Create login session with access token: ${accessToken}`);
     }
+    return res.status(400).send({invalid: true});
+});
+
+router.get('/',
+async (req, res) => {
+    const idx = req.rawHeaders.findIndex(raw => raw === 'Access-token') + 1;
+    const accessToken = req.rawHeaders[idx];
+
+    const isFound = await redisSvc.getAccessToken(accessToken);
+    
+    if(isFound === undefined || isFound === null)
+        return res.status(500).json('Can out found token');
+
+    await redisSvc.dropAccessToken(accessToken);
+    return res.status(200).json('Logout with succesfully');
 });
 
 router.put('/',

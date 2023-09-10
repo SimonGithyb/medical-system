@@ -55,6 +55,7 @@
         <mat-error *ngIf="phoneNumberError != ''">{{phoneNumberError}}</mat-error>
 
         <input type="submit" value="Registration" class="login-btn">
+        <input (click)="back()" value="Back" class="login-btn">
       </form>
     </div>
 </div>

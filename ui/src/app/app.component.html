@@ -1,5 +1,5 @@
-<div *ngIf="role == undefined; else session">
-    <app-nav></app-nav>
+<div *ngIf="role == undefined && !(currentPage == '/login' || currentPage == '/registration'); else session">
+    <app-nav ></app-nav>
 </div>
 
 <ng-template #session>

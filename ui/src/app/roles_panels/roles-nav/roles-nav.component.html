@@ -1,7 +1,8 @@
 <main>
-    <div *ngFor="let header of heaadersForShow">
-        <a class="header">
-            {{header}}
-        </a>
-    </div>
+    <a *ngFor="let header of headersForShow">
+        {{header}}
+    </a>
+    <a (click)="logout()">
+        logout
+    </a>
 </main>

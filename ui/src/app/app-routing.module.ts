@@ -4,7 +4,6 @@ import { LoginComponent } from './account_control/login/login.component';
 import { RegistrationComponent } from './account_control/registration/registration.component';
 import { AdminComponent } from './roles_panels/admin/admin.component';
 import { DoctorComponent } from './roles_panels/doctor/doctor.component';
-import { NurseComponent } from './roles_panels/nurse/nurse.component';
 import { PatientComponent } from './roles_panels/patient/patient.component';
 import { PriceComponent } from './price/price.component';
 import { InfoComponent } from './info/info.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
   { path: RoutePages.REGISTRATION, component: RegistrationComponent },
   { path: RoutePages.ADMIN, component: AdminComponent },
   { path: RoutePages.DOCTOR, component: DoctorComponent },
-  { path: RoutePages.NURSE, component: NurseComponent },
   { path: RoutePages.PATIENT, component: PatientComponent },
   { path: RoutePages.PRICE, component: PriceComponent },
   { path: RoutePages.INFO, component: InfoComponent },
