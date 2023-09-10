@@ -8,11 +8,18 @@ import { Router } from "@angular/router";
 })
 export class NavComponent implements OnInit {
   constructor(private router: Router) {}
+
+  public collapsed: boolean = true;
+
   ngOnInit() {
 
   }
 
   goToPage(link: string): void {
       this.router.navigate([`/${link}`]);
+  }
+
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 }

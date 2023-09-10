@@ -20,6 +20,7 @@ import { RolesNavComponent } from './roles_panels/roles-nav/roles-nav.component'
 import { PriceComponent } from './price/price.component';
 import { InfoComponent } from './info/info.component';
 import { ContactComponent } from './contact/contact.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ContactComponent } from './contact/contact.component';
     BrowserAnimationsModule,
     HttpClientModule,
     MatSnackBarModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

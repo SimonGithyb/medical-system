@@ -13,6 +13,7 @@ export class RolesNavComponent implements OnInit {
   private patientHeders = ['My visits', 'Plan visit'];
 
   public headersForShow: any;
+    public collapsed: boolean = true;
 
   constructor ( private loginService: LoginService,
                 private toast: ToastService,
@@ -46,5 +47,9 @@ export class RolesNavComponent implements OnInit {
     this.loginService.logout()
     .subscribe(res => this.toast.openSnackBar('Logout with successful', 'INFO'),
                error => this.toast.openSnackBar('Logout failed','INFO'))
+  }
+  
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 }

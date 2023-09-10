@@ -28,3 +28,6 @@ input {
 input:focus {
     outline: 2px solid #212121;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
