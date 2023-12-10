@@ -80,7 +80,7 @@ export class RegistrationComponent {
       phoneNumber: this.registrationForm?.get("phoneNumber")?.value
     };
 
-    if (this.validateRegistData(body)) return;
+    // if (this.validateRegistData(body)) return;
 
     this.loginService.registration(body)
       .subscribe((data: any) => {

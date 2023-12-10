@@ -7,6 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,11 +20,12 @@ import { AdminComponent } from './roles_panels/admin/admin.component';
 import { DoctorComponent } from './roles_panels/doctor/doctor.component';
 import { PatientComponent } from './roles_panels/patient/patient.component';
 import { RegistrationComponent } from './account_control/registration/registration.component';
-import { RolesNavComponent } from './roles_panels/roles-nav/roles-nav.component';
 import { PriceComponent } from './price/price.component';
 import { InfoComponent } from './info/info.component';
 import { ContactComponent } from './contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReciptComponent } from './roles_panels/doctor/dialog/recipt/recipt.component';
+import { ReferralComponent } from './roles_panels/doctor/dialog/referral/referral.component';
 
 @NgModule({
   declarations: [
@@ -31,10 +36,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DoctorComponent,
     PatientComponent,
     RegistrationComponent,
-    RolesNavComponent,
     PriceComponent,
     InfoComponent,
-    ContactComponent
+    ContactComponent,
+    ReciptComponent,
+    ReferralComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +54,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     MatSnackBarModule,
     NgbModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

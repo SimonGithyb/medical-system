@@ -31,23 +31,15 @@ const redisService = class {
     }
 
     async setAccessToken(data) {
-        await this.redisSet(this.getAccessTokenKey(data.username), JSON.stringify(data.accessToken), 'EX', this.sessionTTL);
+        await this.redisSet(this.getAccessTokenKey(data.user), JSON.stringify(data.accessToken), 'EX', this.sessionTTL);
     }
 
-    getAccessTokenByUsername(username) {
-        return this.redisGet(this.getInviteSessionKey(username));
+    getAccessToken(user) {
+        return this.redisGet(this.getAccessTokenKey(user));
     }
 
-    async getAccessToken(token) {
-        return this.redisGet(token);
-    }
-
-    dropAccessTokenByUsername(username) {
-        return this.redisDel(this.getInviteSessionKey(username));
-    }
-
-    dropAccessToken(token) {
-        return this.redisDel(token);
+    dropAccessToken(user) {
+        return this.redisDel(this.getAccessTokenKey(user));
     }
 }
 

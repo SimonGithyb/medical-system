@@ -1,0 +1,39 @@
+* {
+    width: auto;
+    height: auto;
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+
+.dialogOption {
+    overflow-y: hidden !important;
+}
+
+button {
+    background-color: none;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+}
+
+.row-blue {
+    background-color: aquamarine;
+}
+
+td {
+    padding: 5px;
+    margin: 3px;
+}
+
+tr {
+    margin: 5px;
+}
+
+table {
+    margin: 0 auto; text-align: center;
+}
+
+.submit {
+    margin:10px;
+    padding: 10px;
+}

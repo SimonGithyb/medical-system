@@ -1,3 +1,4 @@
 export const environment = {
-    serverUrl:"http://localhost:2020/"
+    serverUrl:"http://localhost:2020/",
+    prodMod: false
 };

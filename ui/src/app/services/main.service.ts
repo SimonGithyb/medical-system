@@ -8,51 +8,56 @@ import { AbstractService } from "./abstract.service";
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class MainService {
 
   constructor(private http: HttpClient,
-              private superServ: AbstractService) { }
+    private superServ: AbstractService) { }
 
-  login(credentials: any) {
+  getPriceList() {
     const headers = this.superServ.getHeader();
     return this.superServ.getConfig()
-      .pipe(mergeMap(config => this.http.post(config["serverUrl"] + 'login/', credentials, { headers })),
+      .pipe(mergeMap(config => this.http.get(config["serverUrl"] + `priceList/`, { headers })),
         catchError((err) => {
           console.error(err);
           return this.handleError(err);
         }));
   }
 
-  registration(credentials: any) {
+  sendNewRecipt(personalId: number, drugs: any) {
     const headers = this.superServ.getHeader();
     return this.superServ.getConfig()
-      .pipe(mergeMap(config => this.http.put(config["serverUrl"] + 'login/', credentials, { headers })),
+      .pipe(mergeMap(config => this.http.put(config["serverUrl"] + `newRecipt/`, { personalId, drugs }, { headers })),
         catchError((err) => {
           console.error(err);
           return this.handleError(err);
         }));
   }
 
-  logout(username: string, accessToken: string) {
-    const headers = this.superServ.getHeaderWithToken();
+  sendNewReferral(personalId: number, description: any) {
+    const headers = this.superServ.getHeader();
     return this.superServ.getConfig()
-      .pipe(mergeMap(config => this.http.post(config["serverUrl"] + 'login/logout/', {username, accessToken} ,{ headers })),
-        map(result => {
-          this.superServ.resetStorage();
-          return result;
-        }),
-        catchError((err: HttpErrorResponse) =>
-          err.status !== 401
-            ? this.handleError(err)
-            : throwError(() => new Error(err.error.message || err.error))
-        ));
+      .pipe(mergeMap(config => this.http.put(config["serverUrl"] + `newReferral/`, { personalId, description }, { headers })),
+        catchError((err) => {
+          console.error(err);
+          return this.handleError(err);
+        }));
+  }
+
+  findPerson(personalId: number) {
+    const headers = this.superServ.getHeader();
+    return this.superServ.getConfig()
+      .pipe(mergeMap(config => this.http.get(config["serverUrl"] + `findPerson/${personalId}`, { headers })),
+        catchError((err) => {
+          console.error(err);
+          return this.handleError(err);
+        }));
   }
 
   handleError(error: HttpErrorResponse) {
     if (error['status'] === 400) {
       let message: string = error.error.message || error.error;
       if (message.indexOf('ECONNREFUSED') === 0) {
-        message = 'The username or password you entered did not match our records. Please double-check and try again.';
+        message = 'Cant got data in this time';
         console.log(`ERROR: ${message}`);
         return throwError(() => new Error(message));
       }

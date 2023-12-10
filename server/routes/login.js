@@ -4,6 +4,7 @@ const router = express.Router();
 
 const redisSvc = require('../svc/redis-svc');
 const userModel = require('../models/user.model');
+const personModel = require('../models/person.model');
 const { SESSION_TIME_IN_M } = process.env;
 
 /**
@@ -86,7 +87,7 @@ const { SESSION_TIME_IN_M } = process.env;
  *              application/json:
  *                  schema:
  *                      type: string
- *   get:
+ *   post/logout:
  *     summary: Try logout from system
  *     tags: [Access control]
  *     responses:
@@ -152,14 +153,12 @@ async (req, res) => {
     return res.status(400).send({invalid: true});
 });
 
-router.get('/',
+router.post('/logout',
 async (req, res) => {
-    const idx = req.rawHeaders.findIndex(raw => raw === 'Access-token') + 1;
-    const accessToken = req.rawHeaders[idx];
+    const { username, accessToken } = req.body;
+    const foundedToken = await redisSvc.getAccessToken(username);
 
-    const isFound = await redisSvc.getAccessToken(accessToken);
-    
-    if(isFound === undefined || isFound === null)
+    if(foundedToken === undefined || foundedToken === null || accessToken !== foundedToken)
         return res.status(500).json('Can out found token');
 
     await redisSvc.dropAccessToken(accessToken);
@@ -183,7 +182,7 @@ async (req, res) => {
         return res.status(400).json('Dont exist require data');
     }
 
-    const user = await userModel.find({login: login});
+    const user = await userModel.findOne({login: login})[0];
 
     if (user) {
         return res.status(400).json('E-mail is in use');
@@ -193,6 +192,11 @@ async (req, res) => {
         const newUser = new userModel({
             login,
             password,
+            personalId,
+        });
+
+        const newPerson = new personModel({
+
             name,
             surename,
             personalId,
@@ -200,8 +204,10 @@ async (req, res) => {
             zipCode,
             address,
             phoneNumber
-        });
+        })
+
         newUser.save();
+        newPerson.save();
         console.log('Add new user with success!');
         res.status(200).json('Account has been created');
     } catch (err) {

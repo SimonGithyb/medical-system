@@ -1,0 +1,54 @@
+<main class="col-sm-6 col-md-3">
+    <form [formGroup]="personFindForm" (ngSubmit)="onSubmit()">
+        <h5>Find Patient</h5>
+        <br/>
+        <mat-form-field appearance="outline" >
+            <mat-label>PersonalId</mat-label>
+            <input matInput  placeholder="PersonalId" type="number" formControlName="personalId" >
+        </mat-form-field>
+        <input 
+        type="submit"
+        value="Find"
+        class="submit">
+    </form>
+    <br/>
+    <div *ngIf="person != null">
+        <table>
+            <tr>
+                <td class="row-blue">Name</td>
+                <td class="row-blue">{{person.name}}</td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td>{{person.surename}}</td>
+            </tr>
+            <tr>
+                <td class="row-blue">personal Id</td>
+                <td class="row-blue">{{person.personalId}}</td>
+            </tr>
+            <tr>
+                <td>Zip Code</td>
+                <td>{{person.zipCode}}</td>
+            </tr>
+            <tr>
+                <td class="row-blue">Address</td>
+                <td class="row-blue">{{person.address}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{person.phoneNumber}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <button (click)="openRecipt(person.personalId)">Recipt</button>
+                </td>
+                <td>
+                    <button (click)="openReferral(person.personalId)">Referral</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="newPerson">
+        <app-registration></app-registration>
+    </div>
+</main>

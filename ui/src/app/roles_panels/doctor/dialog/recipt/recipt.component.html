@@ -1,0 +1,36 @@
+<h3>Add new recipt:</h3>
+<form [formGroup]="reciptForm">
+    <mat-form-field appearance="outline">
+        <h6>Personal Id</h6>
+        <input matInput
+            placeholder="PersonalId"
+            type="number"
+            formControlName="personalId">
+    </mat-form-field>
+    <ng-container formArrayName="drugs">
+        <ng-container *ngFor="let drugForm of drugs.controls; let i = index">
+            <form [formGroup]="drugForm">
+                <mat-form-field appearance="outline">
+                    <input matInput
+                           formControlName="title"
+                           placeholder="Drug name">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input matInput
+                            formControlName="refund"
+                            placeholder="Refund %">
+                </mat-form-field>
+                    <button mat-fab color="primary" (click)="deleteDrugs(i)">
+                      <mat-icon >delete</mat-icon>
+                    </button>
+            </form>
+        </ng-container>
+    </ng-container>
+    <div>
+        <button  mat-button color="primary" (click)="addDrugs()">add</button>
+    </div>
+    <input 
+           type="submit"
+           value="Save"
+           (click)="onSubmit()">
+</form>

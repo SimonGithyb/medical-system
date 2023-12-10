@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { PriceService } from '../services/price.service';
+import { MainService } from '../services/main.service';
 
 @Component({
   selector: 'app-price',
@@ -12,14 +12,14 @@ export class PriceComponent implements OnInit{
   public priceList: any;
   public headers = ['Name', 'Cost', 'Material', 'Indications', 'Time'];
 
-  constructor(private priceSvc: PriceService) { }
+  constructor(private mainSvc: MainService) { }
 
   ngOnInit(): void {
     sessionStorage.setItem('currentPage', '/price');
   }
 
   loadPriceList(): void {
-    this.priceSvc.getPriceList()
+    this.mainSvc.getPriceList()
     .subscribe(res => this.priceList = res
     ,error => console.error(error))
   }

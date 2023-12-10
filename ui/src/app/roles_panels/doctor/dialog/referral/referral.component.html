@@ -1,0 +1,23 @@
+<h3>Add new referral:</h3>
+<form [formGroup]="referralForm" (ngSubmit)="onSubmit()">
+    
+    <mat-form-field appearance="outline">
+        <h6>Personal Id</h6>
+        <input matInput
+            placeholder="PersonalId"
+            type="number"
+            formControlName="personalId">
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+            placeholder="description"
+            formControlName="description">
+        </textarea>
+    </mat-form-field>
+    <br/>
+    <input 
+           type="submit"
+           value="Save">
+</form>
