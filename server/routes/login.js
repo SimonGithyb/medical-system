@@ -196,7 +196,6 @@ async (req, res) => {
         });
 
         const newPerson = new personModel({
-
             name,
             surename,
             personalId,

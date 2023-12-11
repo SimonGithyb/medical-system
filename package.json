@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "socket.io": "^4.7.2",
     "swagger-jsdoc": "^6.2.8"
   }
 }

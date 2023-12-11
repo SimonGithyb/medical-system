@@ -8,7 +8,9 @@ const swaggerjsdoc = require('swagger-jsdoc');
 const swaggerui = require('swagger-ui-express');
 
 const routes = require('./routes/schema-routes');
+const socket = require('./svc/socket');
 const { log: wrapLog } = require("./utils/loging");
+
 
 console.log = wrapLog(console.log);
 console.warn = wrapLog(console.warn);
@@ -20,6 +22,7 @@ const { SERVER_PORT } = process.env;
 const main = async () => {
   const app = express();
   const server = require('./utils/serverStart')(app);
+  socket(server);
   
   app.use(bodyParser.json({ limit: '100mb' }));
   app.use(bodyParser.urlencoded({ extended: false }));

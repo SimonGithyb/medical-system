@@ -5,6 +5,7 @@ reciptSchema = new Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
     personalId: { type: Number },
     drugs: { type: Array },
+    code: { type: Number, default: Date.now() },
     addedTime: { type: String, default: new Date }
 }, {collection: 'recipts'});
 

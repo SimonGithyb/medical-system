@@ -5,6 +5,7 @@ referralSchema = new Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, default: () => new mongoose.Types.ObjectId() },
     personalId: { type: Number },
     description: { type: String },
+    code: { type: Number, default: Date.now() },
     addedTime: { type: String, default: new Date }
 }, {collection: 'referral'});
 
