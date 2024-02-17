@@ -10,7 +10,7 @@ const swaggerui = require('swagger-ui-express');
 const routes = require('./routes/schema-routes');
 const socket = require('./svc/socket');
 const { log: wrapLog } = require("./utils/loging");
-
+console.log();
 
 console.log = wrapLog(console.log);
 console.warn = wrapLog(console.warn);
